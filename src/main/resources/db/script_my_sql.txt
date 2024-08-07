@@ -1,0 +1,30 @@
+CREATE TABLE cliente (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    codigo INTEGER NOT NULL UNIQUE,
+    nome VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE pedido (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    numero_controle VARCHAR(255) NOT NULL UNIQUE,
+    data_cadastro DATE NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL,
+    quantidade INTEGER DEFAULT 1,
+    valor_total DECIMAL(10, 2) NOT NULL,
+    cliente_id BIGINT NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+);
+
+-- Inserir 10 clientes para teste
+INSERT INTO cliente (codigo, nome) VALUES
+(1, 'Cliente A'),
+(2, 'Cliente B'),
+(3, 'Cliente C'),
+(4, 'Cliente D'),
+(5, 'Cliente E'),
+(6, 'Cliente F'),
+(7, 'Cliente G'),
+(8, 'Cliente H'),
+(9, 'Cliente I'),
+(10, 'Cliente J');
